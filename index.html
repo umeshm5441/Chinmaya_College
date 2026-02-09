@@ -510,15 +510,28 @@
           };
 
           try {
-            fetch(
+            /* ---------- GOOGLE SHEETS ---------- */
+            await fetch(
               "https://script.google.com/macros/s/AKfycbx68Y5fkuZvuEAz63tQUR4yKg8WKlYrnHVOQOfZ2iNjj4e76Z4zxPX-rBN0tPpYtGM/exec",
-              { method: "POST", body: JSON.stringify(formData) },
+              {
+                method: "POST",
+                body: JSON.stringify(formData),
+              },
             );
-            alert("Submitted Successfully!");
+
+            /* ---------- MONGODB BACKEND ---------- */
+            await fetch("http://localhost:5000/enquiry", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formData),
+            });
 
             alert("Submitted Successfully!");
             this.reset();
           } catch (err) {
+            console.log(err);
             alert("Error submitting form");
           }
 
