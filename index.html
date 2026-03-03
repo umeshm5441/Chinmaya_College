@@ -474,7 +474,26 @@
 
     <!-- SCROLL TOP BUTTON -->
     <button id="topBtn"><i class="fa-solid fa-arrow-up"></i></button>
+    <script>
+      const topBtn = document.getElementById("topBtn");
 
+      // Show button when scrolling down
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 200) {
+          topBtn.style.display = "block";
+        } else {
+          topBtn.style.display = "none";
+        }
+      });
+
+      // Scroll to top when clicked
+      topBtn.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
     <!-- JS -->
     <script>
       const menuIcon = document.getElementById("menuIcon");
